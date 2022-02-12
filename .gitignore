@@ -5,7 +5,6 @@ backup/duplicatefinderthread.pas
 backup/duplicateform.pas
 backup/examineform.pas
 dupefinder.dbg
-dupefinder.exe
 lib/i386-win32/aboutdialog.lfm
 lib/i386-win32/aboutdialog.o
 lib/i386-win32/aboutdialog.ppu
