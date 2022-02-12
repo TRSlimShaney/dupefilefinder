@@ -1,0 +1,135 @@
+object DForm: TDForm
+  Left = 880
+  Height = 520
+  Top = 455
+  Width = 928
+  Caption = 'Find Duplicates'
+  ClientHeight = 520
+  ClientWidth = 928
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PopupMode = pmExplicit
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.12.0'
+  object SummaryGrid: TStringGrid
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ProgressLabel
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 20
+    Height = 346
+    Top = 154
+    Width = 888
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoFillColumns = True
+    BorderSpacing.Left = 20
+    BorderSpacing.Top = 10
+    BorderSpacing.Right = 20
+    BorderSpacing.Bottom = 20
+    ColCount = 2
+    FixedCols = 0
+    RowCount = 1
+    TabOrder = 0
+    OnClick = SummaryGridClick
+    ColWidths = (
+      442
+      442
+    )
+    Cells = (
+      2
+      0
+      0
+      'MD5 Hash'
+      1
+      0
+      'Filenames'
+    )
+  end
+  object DirGroup: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 20
+    Height = 64
+    Top = 20
+    Width = 888
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 20
+    Caption = 'Add Directories'
+    ClientHeight = 44
+    ClientWidth = 884
+    TabOrder = 1
+    object DirCombo: TComboBox
+      Left = 8
+      Height = 23
+      Top = 8
+      Width = 624
+      ItemHeight = 15
+      TabOrder = 0
+    end
+    object AddDirButton: TButton
+      Left = 648
+      Height = 25
+      Top = 6
+      Width = 104
+      Caption = 'Add Directory'
+      OnClick = AddDirButtonClick
+      TabOrder = 1
+    end
+    object RemoveDirButton: TButton
+      Left = 760
+      Height = 25
+      Top = 6
+      Width = 112
+      Caption = 'Remove Directory'
+      OnClick = RemoveDirButtonClick
+      TabOrder = 2
+    end
+  end
+  object FindButton: TButton
+    AnchorSideTop.Control = DirGroup
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 781
+    Height = 25
+    Top = 104
+    Width = 127
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 20
+    Caption = 'Find'
+    OnClick = FindButtonClick
+    TabOrder = 2
+  end
+  object FindProgressBar: TProgressBar
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = DirGroup
+    AnchorSideTop.Side = asrBottom
+    Left = 20
+    Height = 20
+    Top = 104
+    Width = 736
+    BorderSpacing.Around = 20
+    TabOrder = 3
+  end
+  object ProgressLabel: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = FindProgressBar
+    Left = 20
+    Height = 15
+    Top = 129
+    Width = 32
+    BorderSpacing.Left = 20
+    BorderSpacing.Top = 25
+    Caption = 'Ready'
+    ParentColor = False
+  end
+  object DirectoryDialog: TSelectDirectoryDialog
+    Left = 592
+    Top = 96
+  end
+end

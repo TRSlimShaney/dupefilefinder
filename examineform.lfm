@@ -1,0 +1,72 @@
+object ExamineHashForm: TExamineHashForm
+  Left = 816
+  Height = 684
+  Top = 443
+  Width = 820
+  AutoSize = True
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Examine Duplicates'
+  ClientHeight = 684
+  ClientWidth = 820
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PopupMode = pmExplicit
+  Position = poOwnerFormCenter
+  LCLVersion = '2.0.12.0'
+  object DupeGroup: TGroupBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 20
+    Height = 540
+    Top = 20
+    Width = 780
+    Anchors = [akTop, akLeft, akRight]
+    AutoSize = True
+    BorderSpacing.Bottom = 30
+    BorderSpacing.Around = 20
+    Caption = 'Duplicate files'
+    ClientHeight = 520
+    ClientWidth = 776
+    TabOrder = 0
+    object DupeList: TListBox
+      AnchorSideLeft.Control = DupeGroup
+      AnchorSideTop.Control = DupeGroup
+      AnchorSideRight.Control = DupeGroup
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = DupeGroup
+      AnchorSideBottom.Side = asrBottom
+      Left = 10
+      Height = 500
+      Top = 10
+      Width = 756
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Around = 10
+      Constraints.MinHeight = 500
+      Constraints.MinWidth = 500
+      ItemHeight = 0
+      TabOrder = 0
+    end
+  end
+  object DeleteButton: TButton
+    AnchorSideTop.Control = DupeGroup
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = DupeGroup
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 681
+    Height = 54
+    Top = 610
+    Width = 119
+    Anchors = [akTop, akRight, akBottom]
+    BorderSpacing.Bottom = 20
+    Caption = 'Delete File'
+    Constraints.MinHeight = 50
+    OnClick = DeleteButtonClick
+    TabOrder = 1
+  end
+end
