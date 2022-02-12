@@ -1,16 +1,16 @@
 object DForm: TDForm
   Left = 880
-  Height = 520
+  Height = 574
   Top = 455
   Width = 928
   Caption = 'Find Duplicates'
-  ClientHeight = 520
+  ClientHeight = 574
   ClientWidth = 928
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PopupMode = pmExplicit
   Position = poOwnerFormCenter
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.4'
   object SummaryGrid: TStringGrid
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = ProgressLabel
@@ -20,13 +20,13 @@ object DForm: TDForm
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
     Left = 20
-    Height = 346
-    Top = 154
+    Height = 380
+    Top = 174
     Width = 888
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoFillColumns = True
     BorderSpacing.Left = 20
-    BorderSpacing.Top = 10
+    BorderSpacing.Top = 30
     BorderSpacing.Right = 20
     BorderSpacing.Bottom = 20
     ColCount = 2
@@ -42,7 +42,7 @@ object DForm: TDForm
       2
       0
       0
-      'MD5 Hash'
+      'File Hash'
       1
       0
       'Filenames'
@@ -91,16 +91,17 @@ object DForm: TDForm
     end
   end
   object FindButton: TButton
-    AnchorSideTop.Control = DirGroup
+    AnchorSideTop.Control = HashCombo
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 781
     Height = 25
-    Top = 104
+    Top = 147
     Width = 127
     Anchors = [akTop, akLeft, akRight]
-    BorderSpacing.Around = 20
+    BorderSpacing.Left = 20
+    BorderSpacing.Right = 20
     Caption = 'Find'
     OnClick = FindButtonClick
     TabOrder = 2
@@ -126,7 +127,31 @@ object DForm: TDForm
     BorderSpacing.Left = 20
     BorderSpacing.Top = 25
     Caption = 'Ready'
-    ParentColor = False
+  end
+  object HashCombo: TComboBox
+    AnchorSideLeft.Control = FindProgressBar
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = DirGroup
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 776
+    Height = 23
+    Hint = 'Select the precision of the duplication comparison.'#13#10#13#10'MD5 is very fast, but has a very small chance of finding a false positive match.'#13#10'SHA1 is slower, but has almost no chance of finding a false positive match.'
+    Top = 104
+    Width = 132
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 20
+    ItemHeight = 15
+    ItemIndex = 0
+    Items.Strings = (
+      'MD5 (128-bit)'
+      'SHA1 (160-bit)'
+    )
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 4
+    Text = 'MD5 (128-bit)'
   end
   object DirectoryDialog: TSelectDirectoryDialog
     Left = 592

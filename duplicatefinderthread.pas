@@ -5,7 +5,10 @@ unit DuplicateFinderThread;
 interface
 
 uses
-  Classes, SysUtils, generics.collections, md5, FileUtil;
+  Classes, SysUtils, generics.collections, md5, sha1, FileUtil;
+
+  type
+    THashType = (MD5Hash, SHA1Hash, SHA2Hash);
 
   type
     TGUICallback = procedure of Object;
@@ -23,6 +26,7 @@ uses
         procedure Execute; override;
       public
         Cancel: Boolean;
+        HashType: THashType;
         property GetPercentDone: Integer read PercentDone;
         property GetProgressMessage: String read ProgressMessage;
         property GetHashDict: THashDict read HashDict;
@@ -42,6 +46,7 @@ begin
   self.GUICallback:= guicb;
   self.PercentDone:= 0;
   self.Cancel:= False;
+  self.HashType:= THashType.MD5Hash;
 end;
 
 destructor TDuplicateFinderThread.Destroy;
@@ -67,7 +72,14 @@ begin
     for filepath in filelist do begin
       self.UpdatePercent('Examining file: '+filepath, 50);
 
-      filehash:= MD5Print(MD5File(filepath));
+      case self.HashType of
+        THashType.MD5Hash: begin
+          filehash:= MD5Print(MD5File(filepath));
+        end;
+        THashType.SHA1Hash: begin
+          filehash:= SHA1Print(SHA1File(filepath));
+        end;
+      end;
 
       if not self.HashDict.ContainsKey(filehash) then begin
         duplicates:= TStringList.Create;

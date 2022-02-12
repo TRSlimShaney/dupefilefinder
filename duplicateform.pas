@@ -14,6 +14,7 @@ type
 
   TDForm = class(TForm)
     AddDirButton: TButton;
+    HashCombo: TComboBox;
     FindButton: TButton;
     DirCombo: TComboBox;
     DirGroup: TGroupBox;
@@ -60,6 +61,14 @@ begin
     end;
     self.FinderThread.Free;
     self.FinderThread:= TDuplicateFinderThread.Create(self.DirCombo.Items, @self.GUICallback);
+    case self.HashCombo.ItemIndex of
+      1: begin
+        self.FinderThread.HashType:= THashType.MD5Hash;
+      end;
+      2: begin
+        self.FinderThread.HashType:= THashType.SHA1Hash;
+      end;
+    end;
     self.FinderThread.Start;
     self.FindButton.Caption:= 'Cancel';
   end
