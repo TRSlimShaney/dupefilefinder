@@ -1,7 +1,7 @@
 object DForm: TDForm
-  Left = 880
+  Left = 137
   Height = 574
-  Top = 455
+  Top = 104
   Width = 928
   Caption = 'Find Duplicates'
   ClientHeight = 574
@@ -9,7 +9,7 @@ object DForm: TDForm
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PopupMode = pmExplicit
-  Position = poOwnerFormCenter
+  Position = poWorkAreaCenter
   LCLVersion = '2.2.0.4'
   object SummaryGrid: TStringGrid
     AnchorSideLeft.Control = Owner
