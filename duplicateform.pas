@@ -62,10 +62,10 @@ begin
     self.FinderThread.Free;
     self.FinderThread:= TDuplicateFinderThread.Create(self.DirCombo.Items, @self.GUICallback);
     case self.HashCombo.ItemIndex of
-      1: begin
+      0: begin
         self.FinderThread.HashType:= THashType.MD5Hash;
       end;
-      2: begin
+      1: begin
         self.FinderThread.HashType:= THashType.SHA1Hash;
       end;
     end;
@@ -176,16 +176,19 @@ function TDForm.GetExtractedFileNames(list: TStrings): String;
 var
   filepath: String;
   extractedname, extractednames: String;
+  extractednamelist: TStringList;
 begin
+  extractednamelist:= TStringList.Create;
+  extractednamelist.Delimiter:= ',';
+
   for filepath in list do begin
     extractedname:= ExtractFileName(filepath);
-    if extractednames.Length = 0 then begin
-      extractednames:= extractedname;
-    end
-    else begin
-      extractednames:= extractednames+', '+extractedname;
-    end;
+    extractednamelist.Add(extractedname);
   end;
+
+  extractednames:= extractednamelist.DelimitedText;
+  extractednamelist.Free;
+
   Exit(extractednames);
 end;
 
